@@ -1,21 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { formateaNumero } from '../utils/utiles.js'
+import { useParams } from 'react-router-dom'
+import { CartContext } from '../store/CartContext.jsx'
 
 const Pizza = () => {
   const [pizza, setPizza] = useState({})
+  const { id } = useParams()
+  const { handleAgregar } = useContext(CartContext)
+
+  console.log('ID obtenido de useParams:', id)
 
   const getPizza = async (idpizza) => {
     const res = await fetch(`http://localhost:5000/api/pizzas/${idpizza}`)
     const data = await res.json()
 
-    console.log('mostramos data', data)
-
     return setPizza(data)
   }
 
   useEffect(() => {
-    const idpizza = 'p001'
-    getPizza(idpizza)
+    // const idpizza = 'p001'
+    getPizza(id)
   }, [])
 
   return (
@@ -40,7 +44,7 @@ const Pizza = () => {
 
           <div className='d-flex justify-content-between align-items-center m-0 p-0'>
             <h5 className='fw-bold text-dark'>Precio: ${formateaNumero(pizza.price)}</h5>
-            <button className='btn btn-dark btn-sm'>Añadir 🛒</button>
+            <button className='btn btn-dark btn-sm' onClick={() => handleAgregar({ id, name: pizza.name, img: pizza.img, price: pizza.price })}>Añadir 🛒</button>
           </div>
         </div>
       </div>

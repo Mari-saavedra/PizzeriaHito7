@@ -1,9 +1,18 @@
 import { formateaNumero } from '../utils/utiles.js'
 import { useContext } from 'react'
 import { CartContext } from '../store/CartContext.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const CardPizza = ({ id, img, ingredients, name, price }) => {
   const { handleAgregar } = useContext(CartContext)
+
+  const navigate = useNavigate()
+
+  const irAPizza = () => {
+    navigate(`/pizza/${id}`)
+
+    console.log('ID en cardpizza:', id)
+  }
 
   return (
     <div className='card shadow-lg border border-muted' style={{ width: '22rem', borderRadius: '10px' }}>
@@ -29,7 +38,7 @@ const CardPizza = ({ id, img, ingredients, name, price }) => {
         <h5 className='fw-bold text-dark'>Precio: ${formateaNumero(price)}</h5>
 
         <div className='d-flex justify-content-between mt-3'>
-          <button className='btn btn-outline-dark btn-sm'>Ver Más 👀</button>
+          <button className='btn btn-outline-dark btn-sm' onClick={irAPizza}>Ver Más 👀</button>
           <button className='btn btn-dark btn-sm' onClick={() => handleAgregar({ id, name, img, price })}>
             Añadir 🛒
           </button>
