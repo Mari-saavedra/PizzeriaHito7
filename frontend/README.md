@@ -1,1 +1,1 @@
-Se incluye el consumo de la API desde un Context (punto 6 opcional)
+Se incluye la deshabilitación de los Botones de Pagar y Añadir en las páginas cuando el Token es false, si el token es true estarán habilitados

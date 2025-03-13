@@ -2,9 +2,11 @@ import { formateaNumero } from '../utils/utiles.js'
 
 import { useContext } from 'react'
 import { CartContext } from '../store/CartContext.jsx'
+import { UserContext } from '../store/UserContext.jsx'
 
 const Cart = () => {
   const { cartItems, total, handleSumar, handleRestar } = useContext(CartContext)
+  const { token } = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -65,6 +67,7 @@ const Cart = () => {
             <button
               type='submit'
               className='btn btn-dark' style={{ width: '90px', height: '45px', fontSize: '15px' }}
+              disabled={!token}
             >Pagar
             </button>
           </div>

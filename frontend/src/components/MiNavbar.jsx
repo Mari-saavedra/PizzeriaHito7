@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 import { useContext } from 'react'
 import { CartContext } from '../store/CartContext.jsx'
+import { UserContext } from '../store/UserContext.jsx'
 
 const MiNavbar = () => {
   const { total } = useContext(CartContext)
-  const token = false
+  const { token } = useContext(UserContext)
 
   return (
     <Navbar bg='dark' variant='dark' expand='lg'>

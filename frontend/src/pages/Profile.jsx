@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Swal from 'sweetalert2'
+import { UserContext } from '../store/UserContext.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
   const [email, setEmail] = useState('micorreo@correo.cl')
+  const navigate = useNavigate()
+  const { token, logout } = useContext(UserContext)
+
+  console.log('en profile  ', token)
 
   const handleChange = (e) => {
     setEmail(e.target.value)
@@ -14,11 +20,17 @@ const Profile = () => {
     Swal.fire({
       title: 'Listo!',
       text: 'Su sesión se cerró correctamente.',
-      icon: 'ok'
+      icon: 'success'
     })
 
     setEmail(email)
   }
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/Login')
+    }
+  }, [token, navigate])
 
   return (
     <div className='container p-3'>
@@ -35,8 +47,6 @@ const Profile = () => {
                 onChange={handleChange}
                 name='email'
                 className='w-100 p-2 border rounded-lg'
-                disabled='true'
-                // placeholder='Ingresa tu email'
               />
             </div>
 

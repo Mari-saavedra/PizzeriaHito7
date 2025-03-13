@@ -2,11 +2,12 @@ import { formateaNumero } from '../utils/utiles.js'
 import { useContext } from 'react'
 import { CartContext } from '../store/CartContext.jsx'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../store/UserContext.jsx'
 
 const CardPizza = ({ id, img, ingredients, name, price }) => {
   const { handleAgregar } = useContext(CartContext)
-
   const navigate = useNavigate()
+  const { token } = useContext(UserContext)
 
   const irAPizza = () => {
     navigate(`/pizza/${id}`)
@@ -39,7 +40,11 @@ const CardPizza = ({ id, img, ingredients, name, price }) => {
 
         <div className='d-flex justify-content-between mt-3'>
           <button className='btn btn-outline-dark btn-sm' onClick={irAPizza}>Ver Más 👀</button>
-          <button className='btn btn-dark btn-sm' onClick={() => handleAgregar({ id, name, img, price })}>
+          <button
+            className='btn btn-dark btn-sm'
+            disabled={!token}
+            onClick={() => handleAgregar({ id, name, img, price })}
+          >
             Añadir 🛒
           </button>
         </div>
