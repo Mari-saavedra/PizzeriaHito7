@@ -1,14 +1,10 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import Swal from 'sweetalert2'
 import { UserContext } from '../store/UserContext.jsx'
-import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
   const [email, setEmail] = useState('micorreo@correo.cl')
-  const navigate = useNavigate()
-  const { token, logout } = useContext(UserContext)
-
-  console.log('en profile  ', token)
+  const { logout } = useContext(UserContext)
 
   const handleChange = (e) => {
     setEmail(e.target.value)
@@ -16,6 +12,8 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    logout()
 
     Swal.fire({
       title: 'Listo!',
@@ -25,12 +23,6 @@ const Profile = () => {
 
     setEmail(email)
   }
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/Login')
-    }
-  }, [token, navigate])
 
   return (
     <div className='container p-3'>

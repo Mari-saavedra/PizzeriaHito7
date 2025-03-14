@@ -27,7 +27,7 @@ const Login = () => {
     Swal.fire({
       title: 'Listo!',
       text: 'Autentificación correcta.',
-      icon: 'ok'
+      icon: 'success'
     })
 
     setLogin({ email: '', passw: '' })

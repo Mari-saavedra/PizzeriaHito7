@@ -49,7 +49,7 @@ const Register = () => {
     Swal.fire({
       title: 'Listo!',
       text: 'Datos ingresados correctamente.',
-      icon: 'ok'
+      icon: 'success'
     })
 
     setIngreso({ email: '', passw: '', rpassw: '' })

@@ -1,46 +1,21 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { MiNavbar, Footer, ProtectedRoute } from './components/index'
-import { Home, Register, Login, Cart, Pizza, Profile, NotFound, Logout } from './pages/index'
+import { BrowserRouter } from 'react-router-dom'
+import { MiNavbar, Footer } from './components/index'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import HomePizzasProvider from './store/HomePizzasContext'
-import CartProvider from './store/CartContext'
-import UserProvider from './store/UserContext'
+import AppRoutes from './routes/AppRoutes'
+import AppProviders from './store/AppProviders'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <HomePizzasProvider>
-        <CartProvider>
-          <UserProvider>
-            <MiNavbar />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-
-              <Route path='/register' element={<Register />} />
-
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/pizza/:id' element={<Pizza />} />
-              <Route
-                path='/profile'
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                  }
-              />
-
-              <Route path='/logout' element={<Logout />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-            <ToastContainer />
-            <Footer />
-          </UserProvider>
-        </CartProvider>
-      </HomePizzasProvider>
+      <AppProviders>
+        <MiNavbar />
+        <AppRoutes />
+        <ToastContainer />
+        <Footer />
+      </AppProviders>
     </BrowserRouter>
   )
 }

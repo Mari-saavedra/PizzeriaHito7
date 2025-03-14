@@ -10,8 +10,6 @@ const Pizza = () => {
   const { handleAgregar } = useContext(CartContext)
   const { token } = useContext(UserContext)
 
-  console.log('ID obtenido de useParams:', id)
-
   const getPizza = async (idpizza) => {
     const res = await fetch(`http://localhost:5000/api/pizzas/${idpizza}`)
     const data = await res.json()

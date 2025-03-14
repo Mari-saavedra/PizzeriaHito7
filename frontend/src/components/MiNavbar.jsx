@@ -1,4 +1,5 @@
 import { formateaNumero } from '../utils/utiles.js'
+import { BiUser } from 'react-icons/bi'
 import { Nav, Navbar, Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -35,7 +36,7 @@ const MiNavbar = () => {
               : (
                 <>
                   <Link to='/login' className='text-decoration-none ms-3 text-white'>
-                    <Button variant='dark' className='btn btn-dark btn-outline-light btn-sm'>🔐Login</Button>
+                    <Button variant='dark' className='btn btn-dark btn-outline-light btn-sm'><BiUser className='me-1' size={20} />Login</Button>
                   </Link>
                   <Link to='/register' className='text-decoration-none ms-3 text-white'>
                     <Button variant='dark' className='btn btn-dark btn-outline-light btn-sm'>🔐Register</Button>
